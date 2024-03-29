@@ -1,0 +1,260 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="Description" content="PHP-Addressbook">
+	<meta name="Keywords" content="">
+
+	<style type="text/css">
+		
+    body {background-image:url('./skins/header-blue.jpg');background-repeat:repeat-x;background-position:top left;}
+    table#maintable th {text-align:center;border:1px solid #ccc;font-size:12px;background:#739fce;color:#fff;}
+    table#birthdays th {color:#fff;background:#739fce;margin:25px;border:1px solid #ccc;}
+	</style>
+	<link rel="stylesheet" type="text/css" media="all" href="style.css">
+	<!--[if !IE]>-->
+	<link media="only screen and (max-device-width: 480px)" rel="stylesheet" type="text/css" href="iphone.css">
+	<!--<![endif]-->
+	<meta name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+
+
+	<link rel="icon" type="image/png" href="icons/font.png">
+	<title>Address book </title>	</head>
+	<body>
+		<div id="container">
+			<div id="top">
+<!--
+[<a title="other languages" href="?more_langs=yes">+</a>] | <a href='?lang=ar'><img title='Arabic' alt='Arabic' src='icons/sa.gif'/></a> | <a href='?lang=de'><img title='German' alt='German' src='icons/de.gif'/></a> | <a href='?lang=fr'><img title='French' alt='French' src='icons/fr.gif'/></a> | <a href='?lang=it'><img title='Italian' alt='Italian' src='icons/it.gif'/></a> | <a href='?lang=th'><img title='Thai' alt='Thai' src='icons/th.gif'/></a> | <a href='?lang=ru'><img title='Russian' alt='Russian' src='icons/ru.gif'/></a> | 
+
+<a href="preferences.php?from=%2FaddressBookv6.1%2Fedit.php">Preferences</a>
+-->
+			</div>
+			<div id="header">
+				<h1><a href=".">Address Book</a></h1>
+				<a href="."><img src="title.png" title="Addressbook" alt="Addressbook" id="logo"></a>
+			</div>
+			<div id="nav">
+      			<ul>
+<li>
+	<a href="./">home</a>
+</li>
+<li class="all">
+	<a href="edit.php">add new</a>
+</li>
+	<li class="admin">
+		<a href="group.php">groups</a>
+	</li>
+	<li class="all">
+		<a href="birthdays.php">next birthdays</a>
+	</li>
+	<li class="export">
+    	<a href="view.php?all&amp;print">print all</a>
+  </li>
+	<li class="export">
+      <a href="view.php?all&amp;print&amp;phones">print phones</a>
+  </li>
+	<li class="export">
+    	<a href="export.php">export</a>
+  </li> 
+	<li class="export">
+    	<a href="import.php">import</a>
+  </li> 
+</ul>
+			</div>
+			<div id="content">
+
+ <h1>Edit / add address book entry</h1> 
+<script type="text/javascript">
+<!--
+
+last_proposal = "";
+
+function proposeMail() {
+	
+	if(document.theform.email.value == last_proposal) {
+	
+    new_proposal = "";
+
+	  has_firstname = document.theform.firstname.value != "";
+	  has_lastname  = document.theform.lastname.value != "";
+	
+	  if(has_firstname) {
+	    new_proposal = document.theform.firstname.value.toLowerCase();
+	  }
+	  if(has_firstname && has_lastname) {
+      new_proposal += ".";
+    }
+    if(has_lastname) {
+      new_proposal += document.theform.lastname.value.toLowerCase();    	
+    }
+    new_proposal += "@" + document.theform.company.value.toLowerCase().replace(" ", "-");
+
+	  document.theform.email.value = new_proposal;
+	  last_proposal = new_proposal;
+	  
+	}
+}
+
+function ucfirst(str) {
+  return str.slice(0,1).toUpperCase() + str.slice(1);
+}
+function ucf_arr(str_arr) {
+  str_res = Array();
+  for (var i = 0; i < str_arr.length; i++) {
+    str_res[i] = ucfirst(str_arr[i]);
+  }
+  return str_res;
+}
+
+function trim(str, chars) {
+	no_left = str.replace(new RegExp("^[" + chars + "]+", "g"), "");
+	return no_left.replace(new RegExp("[" + chars + "]+$", "g"), "");
+}
+
+function proposeNames() {
+ 
+  document.theform.email.value = trim(document.theform.email.value, " \t");
+  who_from =  document.theform.email.value.split("@", 2);
+
+  if(who_from.length >= 2) {
+
+	  who  = who_from[0].split(/[\._]+/,2);
+	  if(who.length == 1)  {
+	    who  = who_from[0].split("_",2);
+	  }
+	  if(document.theform.firstname.value == "") {
+	    document.theform.firstname.value = ucf_arr(who[0].split("-")).join("-");
+	  }
+	  if(who.length > 1 && document.theform.lastname.value == "") {
+	    document.theform.lastname.value = ucf_arr(who[1].split("-")).join("-");
+	  }
+  }
+}
+
+-->
+</script>
+
+  <form accept-charset="utf-8" method="post" action="edit.php" name="theform">
+
+		<input type="submit" name="submit" value="Enter"><br><br>
+
+		<input type="hidden" name="id" value="">
+		<label>First name:</label>
+		<input type="text" name="firstname" size="35" onkeyup="proposeMail()"><br>
+
+		<label>Last name:</label>
+		<input type="text" name="lastname" size="35" onkeyup="proposeMail()"><br>
+
+		<label>Company:</label>
+		<input type="text" name="company" size="35" onkeyup="proposeMail()"><br>
+
+		<label>Address:</label>
+		<textarea name="address" rows="5" cols="35"></textarea><br>
+
+		<label>Telephone</label><br><br class="clear">
+
+		<label>Home:</label>
+		<input type="text" name="home" size="35"><br>
+
+		<label>Mobile:</label>
+		<input type="text" name="mobile" size="35"><br>
+
+		<label>Work:</label>
+		<input type="text" name="work" size="35"><br>
+
+		<label>Fax:</label>
+		<input type="text" name="fax" size="35"><br>
+
+		<label>&nbsp;</label><br><br class="clear">
+
+		<label>E-mail:</label>
+		<input type="text" name="email" size="35" onkeyup="proposeNames()"><br>
+
+		<label>E-mail2:</label>
+		<input type="text" name="email2" size="35"><br>
+
+		<label>Homepage:</label>
+		<input type="text" name="homepage" size="35"><br>
+
+		<label>Birthday:</label>
+        <select name="bday">
+          <option value="0" selected="selected">-</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+          <option value="16">16</option>
+          <option value="17">17</option>
+          <option value="18">18</option>
+          <option value="19">19</option>
+          <option value="20">20</option>
+          <option value="21">21</option>
+          <option value="22">22</option>
+          <option value="23">23</option>
+          <option value="24">24</option>
+          <option value="25">25</option>
+          <option value="26">26</option>
+          <option value="27">27</option>
+          <option value="28">28</option>
+          <option value="29">29</option>
+          <option value="30">30</option>
+          <option value="31">31</option>
+        </select>
+        <select name="bmonth">
+          <option value="-" selected="selected">-</option>
+          <option value="January">January</option>
+          <option value="February">February</option>
+          <option value="March">March</option>
+          <option value="April">April</option>
+          <option value="May">May</option>
+          <option value="June">June</option>
+          <option value="July">July</option>
+          <option value="August">August</option>
+          <option value="September">September</option>
+          <option value="October">October</option>
+          <option value="November">November</option>
+          <option value="December">December</option>
+        </select>
+        <input type="text" name="byear" size="4" maxlength="4"><br>
+
+		
+	<label>Group:</label>
+				<select name="new_group">
+				          <option value="[none]">[none]</option>
+          				</select><br>
+				
+		<br>
+		<label><b>Secondary</b></label><br><br class="clear">
+
+		<label>Address:</label>
+		<textarea name="address2" rows="5" cols="35"></textarea><br>
+
+		<label>Home:</label>
+		<input type="text" name="phone2" size="35"><br>
+
+		<label>Notes:</label>
+		<textarea name="notes" rows="5" cols="35"></textarea><br><br>
+
+		<input type="submit" name="submit" value="Enter">
+  </form>
+	</div>
+	<div id="footer">
+			<ul>
+				<li><a href="http://sourceforge.net/projects/php-addressbook/">php-addressbook</a> <a href="notes.htm">v6.1 - r346</a></li>
+			</ul>
+	</div>
+</div>
+	
+ 
+
+
+</body></html>

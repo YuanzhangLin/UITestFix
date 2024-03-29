@@ -1,0 +1,160 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="Description" content="PHP-Addressbook">
+	<meta name="Keywords" content="">
+	<link rel="stylesheet" type="text/css" media="screen" href="style.css">
+	<link rel="icon" type="image/png" href="icons/font.png">
+	<title>Address book </title>	</head>
+	<body>
+		<div id="container">
+			<div id="top">
+[<a title="other languages" href="?more_langs=yes">+</a>] | <a href="?lang=ar"><img title="Arabic" alt="Arabic" src="icons/sa.gif"></a> | <a href="?lang=zh"><img title="Chinese" alt="Chinese" src="icons/zh.gif"></a> | <a href="?lang=es"><img title="Spanish" alt="Spanish" src="icons/es.gif"></a> | <a href="?lang=fr"><img title="French" alt="French" src="icons/fr.gif"></a> | <a href="?lang=ru"><img title="Russian" alt="Russian" src="icons/ru.gif"></a> | 
+
+<a href="preferences.php?from=%2Faddressbookv4.0%2Fedit.php">Preferences</a>
+			</div>
+			<div id="header"><a href="."><img src="title.png" title="Addressbook" alt="Addressbook"></a></div>
+			<div id="nav">
+      			<ul>
+<li>
+	<img src="icons/font.png" alt="home">
+	<a href="./">home</a>
+</li>
+<li>
+	<img src="icons/add.png" alt="add new"><a href="edit.php">add new</a>
+</li>
+	<li><img src="icons/group.png" alt="groups"><a href="group.php">groups</a></li>
+	<li>
+		<img src="icons/date.png" alt="next birthdays">
+		<a href="birthdays.php">next birthdays</a>
+	</li>
+    <li>
+    	<img src="icons/printer.png" alt="print all">
+    	<a href="view.php?all&amp;print">print all</a>
+  </li>
+    <li>
+      <img src="icons/book_open.png" alt="print phones">
+      <a href="view.php?all&amp;print&amp;phones">print phones</a>
+  </li>
+    <li>
+      <img src="icons/page_excel.png" alt="export csv">
+    	<a href="csv.php">export csv</a>
+  </li> 
+</ul>
+			</div>
+			<div id="content">
+
+
+ <h1>Edit / add address book entry</h1> 
+  <form accept-charset="utf-8" method="post" action="edit.php">
+
+		<input type="hidden" name="id" value="">
+		<label>First name:</label>
+		<input type="text" name="firstname" size="35"><br>
+
+		<label>Last name:</label>
+		<input type="text" name="lastname" size="35"><br>
+
+		<label>Address:</label>
+		<textarea name="address" rows="5" cols="35"></textarea><br>
+
+		<label>Telephone</label><br><br class="clear">
+
+		<label>Home:</label>
+		<input type="text" name="home" size="35"><br>
+
+		<label>Mobile:</label>
+		<input type="text" name="mobile" size="35"><br>
+
+		<label>Work:</label>
+		<input type="text" name="work" size="35"><br>
+
+		<label>&nbsp;</label><br><br class="clear">
+
+		<label>E-mail:</label>
+		<input type="text" name="email" size="35"><br>
+
+		<label>E-mail2:</label>
+		<input type="text" name="email2" size="35"><br>
+
+		<label>Birthday:</label>
+        <select name="bday">
+          <option value="0" selected="selected">-</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+          <option value="16">16</option>
+          <option value="17">17</option>
+          <option value="18">18</option>
+          <option value="19">19</option>
+          <option value="20">20</option>
+          <option value="21">21</option>
+          <option value="22">22</option>
+          <option value="23">23</option>
+          <option value="24">24</option>
+          <option value="25">25</option>
+          <option value="26">26</option>
+          <option value="27">27</option>
+          <option value="28">28</option>
+          <option value="29">29</option>
+          <option value="30">30</option>
+          <option value="31">31</option>
+        </select>
+        <select name="bmonth">
+          <option value="-" selected="selected">-</option>
+          <option value="January">January</option>
+          <option value="February">February</option>
+          <option value="March">March</option>
+          <option value="April">April</option>
+          <option value="May">May</option>
+          <option value="June">June</option>
+          <option value="July">July</option>
+          <option value="August">August</option>
+          <option value="September">September</option>
+          <option value="October">October</option>
+          <option value="November">November</option>
+          <option value="December">December</option>
+        </select>
+        <input type="text" name="byear" size="4" maxlength="4"><br>
+
+		
+	<label>Group:</label>
+				<select name="new_group">
+				          <option value="[none]">[none]</option>
+          <option>Rob</option>
+				</select><br>
+				
+		<br>
+		<label><b>Secondary</b></label><br><br class="clear">
+
+		<label>Address:</label>
+		<textarea name="address2" rows="5" cols="35"></textarea><br>
+
+		<label>Home:</label>
+		<input type="text" name="phone2" size="35"><br><br><br>
+
+		<input type="submit" name="submit" value="Enter">
+  </form>
+	</div>
+	<div id="footer">
+			<ul>
+				<li><a href="http://sourceforge.net/projects/php-addressbook/">php-addressbook</a> <a href="notes.htm">v4.0</a></li>
+			</ul>
+	</div>
+</div>
+	
+ 
+
+
+</body></html>
